@@ -7,17 +7,35 @@ const MoviePreview = ({ movie = {}, movies, onAddSubmit }) => {
     return null
   }
 
+  const rtRating =
+    movie?.Ratings[1]?.Value ??
+    'There is no Rotten Tomato rating for this movie!'
+
   return (
-    <View style={styles.viewStyle}>
-      {!duplicateCheck(movies, movie.imdbID) ? (
+    <View style={styles.mainViewStyle}>
+      <View style={{ width: '30%' }}>
+        {!duplicateCheck(movies, movie.imdbID) ? (
+          <Button
+            onPress={() => onAddSubmit([...movies, movie])}
+            title={'+'}
+            style={styles.button}
+          />
+        ) : (
+          <Text>{movie.Title} has been added!</Text>
+        )}
+
         <Image
           style={styles.tinyPoster}
           key={movie.imdbID}
           source={{ uri: movie.Poster }}
-        ></Image>
-      ) : (
-        <Text>{movie.Title} has been added!</Text>
-      )}
+        />
+      </View>
+      <View style={{ marginTop: 35, width: '65%' }}>
+        <Text>Movie title: {movie.Title}</Text>
+        <Text>Storyline: {movie.Plot}</Text>
+        <Text>Total boxoffice sales: {movie.BoxOffice}</Text>
+        <Text>Rotten Tomato rating: {rtRating}</Text>
+      </View>
     </View>
   )
 }
@@ -27,8 +45,12 @@ const styles = StyleSheet.create({
     width: 100,
     height: 180,
   },
-  viewStyle: {
+  mainViewStyle: {
     paddingLeft: 16,
+    flexDirection: 'row',
+  },
+  button: {
+    alignSelf: 'flex-start',
   },
 })
 

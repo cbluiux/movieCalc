@@ -42,19 +42,32 @@ const HomeScreen = () => {
 
   return (
     <ScrollView style={{ paddingTop: 100 }}>
-      <Text style={{ paddingLeft: 16 }}>Clair Movie Calculator</Text>
+      <Text style={styles.header}>Clair Movie Calculator</Text>
+
       <SearchBar onTermSubmit={searchApi} />
+
       {loading ? <Text>{loading}</Text> : null}
+
       {error ? <Text>{error}</Text> : null}
+
       {Object.keys(searchResult).length ? (
         <MoviePreview
           movie={searchResult}
           movies={movies}
-          onAddSubmit={setMovies}
+          onAddSubmit={setMovies} 
         />
       ) : null}
     </ScrollView>
   )
 }
+
+const styles = StyleSheet.create({
+  header: {
+    paddingLeft: 16,
+    fontSize: 30,
+    fontStyle: 'italic',
+    fontWeight: 'bold',
+  },
+})
 
 export default HomeScreen
