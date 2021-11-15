@@ -43,8 +43,8 @@ const HomeScreen = () => {
   }
 
   return (
-    <ScrollView style={{ padding: 100 }}>
-      <Text>This is my Home Screen</Text>
+    <ScrollView style={{ paddingTop: 100 }}>
+      <Text>Clair Movie Calculator</Text>
       <SearchBar onTermSubmit={searchApi} />
       {loading ? <Text>{loading}</Text> : null}
       {error ? <Text>{error}</Text> : null}
