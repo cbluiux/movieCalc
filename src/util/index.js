@@ -40,3 +40,21 @@ export const currencyFormatter = (num) => {
     currency: 'USD',
   }).format(num)
 }
+
+// Did not create this function myself, found online.
+// https://dustinpfister.github.io/2018/02/20/statistics-standard-deviation/
+export const stdDeviation = (arr) => {
+  if (!arr.length) {
+    return 0
+  }
+
+  let m = boxOfficeMeanCalc(arr)
+  return (
+    Math.sqrt(
+      arr.reduce(function (sq, n) {
+        return sq + Math.pow(stringToNumber(n.BoxOffice) - m, 2)
+      }, 0) /
+        (arr.length - 1)
+    ) || 0
+  )
+}
