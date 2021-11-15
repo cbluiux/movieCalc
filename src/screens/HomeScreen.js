@@ -11,6 +11,7 @@ import {
   boxOfficeMeanCalc,
   currencyFormatter,
   stdDeviation,
+  medianRating,
 } from '../util'
 
 const HomeScreen = () => {
@@ -50,6 +51,7 @@ const HomeScreen = () => {
 
   const currMean = boxOfficeMeanCalc(movies)
   const currDeviation = stdDeviation(movies)
+  const currMedianRating = medianRating(movies)
 
   return (
     <ScrollView style={{ paddingTop: 100 }}>
@@ -69,7 +71,7 @@ const HomeScreen = () => {
         />
       ) : null}
 
-      <View>
+      <View style={{ paddingLeft: 16, marginTop: 35 }}>
         <StatRow
           message={'Box Office Mean:'}
           calculation={currencyFormatter(currMean)}
@@ -78,8 +80,14 @@ const HomeScreen = () => {
           message={'Box Office Standard Deviation:'}
           calculation={currencyFormatter(currDeviation)}
         />
-
-        {/* <StatRow message={'Median RT Score:'} calculation={}/> */}
+        <StatRow
+          message={'Median RT Score:'}
+          calculation={
+            currMedianRating < 0
+              ? 'Please add a movie!'
+              : `${currMedianRating}%`
+          }
+        />
       </View>
 
       <MovieList

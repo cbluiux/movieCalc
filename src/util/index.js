@@ -58,3 +58,33 @@ export const stdDeviation = (arr) => {
     ) || 0
   )
 }
+
+export const medianRating = (movies) => {
+  if (!movies.length) {
+    return -1
+  }
+
+  const arrOfRatings = movies.reduce((acc, curr) => {
+    acc.push(stringToNumber(curr?.Ratings[1]?.Value))
+    return acc
+  }, [])
+
+  if (!arrOfRatings.length) {
+    return -1
+  }
+
+  arrOfRatings.sort((a, b) => {
+    return a - b
+  })
+
+  if (!(arrOfRatings.length % 2)) {
+    const left = arrOfRatings.length / 2 - 1
+    const right = arrOfRatings.length / 2
+    const total = arrOfRatings[left] + arrOfRatings[right]
+
+    return total / 2
+  }
+
+  const mid = Math.ceil(arrOfRatings.length / 2 - 1)
+  return arrOfRatings[mid]
+}
