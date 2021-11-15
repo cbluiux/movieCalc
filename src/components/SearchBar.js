@@ -1,10 +1,22 @@
-import React from 'react'
-import { ScrollView, Text, StyleSheet, View } from 'react-native'
+import React, { useState } from 'react'
+import { Text, StyleSheet, View, TextInput } from 'react-native'
 
-const SearchBar = () => {
+const SearchBar = ({ onTermSubmit }) => {
+  const [term, setTerm] = useState('')
+
   return (
     <View>
-      <Text>This is my SearchBar</Text>
+      <TextInput
+        autoCapitalize="none"
+        autoCorrect={false}
+        placeholder="Search Here"
+        value={term}
+        onChangeText={setTerm}
+        onEndEditing={() => {
+          onTermSubmit(term)
+          setTerm('')
+        }}
+      />
     </View>
   )
 }
