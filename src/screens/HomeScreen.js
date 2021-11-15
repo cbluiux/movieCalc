@@ -3,7 +3,8 @@ import { ScrollView, Text, StyleSheet, View } from 'react-native'
 import axios from 'axios'
 import SearchBar from '../components/SearchBar'
 import MoviePreview from '../components/MoviePreview'
-import { paramFormatter } from '../util'
+import MovieList from '../components/MovieList'
+import { paramFormatter, filterMovies } from '../util'
 
 const HomeScreen = () => {
   const [searchResult, setSearchResult] = useState({})
@@ -54,9 +55,15 @@ const HomeScreen = () => {
         <MoviePreview
           movie={searchResult}
           movies={movies}
-          onAddSubmit={setMovies} 
+          onAddSubmit={setMovies}
         />
       ) : null}
+
+      <MovieList
+        movies={movies}
+        filterMovies={filterMovies}
+        onFilterSubmit={setMovies}
+      />
     </ScrollView>
   )
 }

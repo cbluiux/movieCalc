@@ -9,3 +9,8 @@ export const duplicateCheck = (movies, movieId) => {
   }
   return false
 }
+
+export const filterMovies = (movies, movieId, setMovies) => {
+  const updatedMovies = movies.filter((movie) => movie.imdbID !== movieId)
+  setMovies(updatedMovies)
+}
