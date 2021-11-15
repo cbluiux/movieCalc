@@ -4,6 +4,7 @@ import axios from 'axios'
 import SearchBar from '../components/SearchBar'
 import MoviePreview from '../components/MoviePreview'
 import MovieList from '../components/MovieList'
+import StatRow from '../components/StatRow'
 import { paramFormatter, filterMovies } from '../util'
 
 const HomeScreen = () => {
@@ -58,6 +59,12 @@ const HomeScreen = () => {
           onAddSubmit={setMovies}
         />
       ) : null}
+
+      <View>
+        <StatRow message={'Box Office Mean:'} calc={}/>
+        <StatRow message={'Box Office Standard Deviation:'} calc={}/>
+        <StatRow message={'Median RT Score:'} calc={}/>
+      </View>
 
       <MovieList
         movies={movies}
