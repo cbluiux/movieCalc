@@ -5,7 +5,12 @@ import SearchBar from '../components/SearchBar'
 import MoviePreview from '../components/MoviePreview'
 import MovieList from '../components/MovieList'
 import StatRow from '../components/StatRow'
-import { paramFormatter, filterMovies } from '../util'
+import {
+  paramFormatter,
+  filterMovies,
+  boxOfficeMeanCalc,
+  currencyFormatter,
+} from '../util'
 
 const HomeScreen = () => {
   const [searchResult, setSearchResult] = useState({})
@@ -42,6 +47,8 @@ const HomeScreen = () => {
     }
   }
 
+  const currMean = boxOfficeMeanCalc(movies)
+
   return (
     <ScrollView style={{ paddingTop: 100 }}>
       <Text style={styles.header}>Clair Movie Calculator</Text>
@@ -61,9 +68,12 @@ const HomeScreen = () => {
       ) : null}
 
       <View>
-        <StatRow message={'Box Office Mean:'} calc={}/>
-        <StatRow message={'Box Office Standard Deviation:'} calc={}/>
-        <StatRow message={'Median RT Score:'} calc={}/>
+        <StatRow
+          message={'Box Office Mean:'}
+          calculation={currencyFormatter(currMean)}
+        />
+        {/* <StatRow message={'Box Office Standard Deviation:'} calc={}/>
+        <StatRow message={'Median RT Score:'} calc={}/> */}
       </View>
 
       <MovieList

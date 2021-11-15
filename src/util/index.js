@@ -27,10 +27,9 @@ export const boxOfficeMeanCalc = (moviesArr) => {
     return 0
   }
 
-  const total = moviesArr.reduce(
-    (acc, curr) => acc + stringToNumber(curr.BoxOffice),
-    0
-  )
+  const total = moviesArr.reduce((acc, curr) => {
+    return acc + stringToNumber(curr.BoxOffice)
+  }, 0)
 
   return total / moviesArr.length
 }
